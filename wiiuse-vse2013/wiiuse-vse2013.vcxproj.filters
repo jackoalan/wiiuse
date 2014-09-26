@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\classic.c" />
+    <ClCompile Include="..\src\dynamics.c" />
+    <ClCompile Include="..\src\events.c" />
+    <ClCompile Include="..\src\guitar_hero_3.c" />
+    <ClCompile Include="..\src\io.c" />
+    <ClCompile Include="..\src\ir.c" />
+    <ClCompile Include="..\src\motion_plus.c" />
+    <ClCompile Include="..\src\nunchuk.c" />
+    <ClCompile Include="..\src\os_nix.c" />
+    <ClCompile Include="..\src\os_win.c" />
+    <ClCompile Include="..\src\util.c" />
+    <ClCompile Include="..\src\wiiboard.c" />
+    <ClCompile Include="..\src\wiiuse.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\classic.h" />
+    <ClInclude Include="..\src\definitions.h" />
+    <ClInclude Include="..\src\definitions_os.h" />
+    <ClInclude Include="..\src\dynamics.h" />
+    <ClInclude Include="..\src\events.h" />
+    <ClInclude Include="..\src\guitar_hero_3.h" />
+    <ClInclude Include="..\src\io.h" />
+    <ClInclude Include="..\src\ir.h" />
+    <ClInclude Include="..\src\motion_plus.h" />
+    <ClInclude Include="..\src\nunchuk.h" />
+    <ClInclude Include="..\src\os.h" />
+    <ClInclude Include="..\src\wiiboard.h" />
+    <ClInclude Include="..\src\wiiuse.h" />
+    <ClInclude Include="..\src\wiiuse_internal.h" />
+    <ClInclude Include="..\src\wiiuse_msvcstdint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\src\CMakeLists.txt" />
+  </ItemGroup>
+</Project>
