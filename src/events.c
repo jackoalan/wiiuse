@@ -75,7 +75,7 @@ int wiiuse_poll(struct wiimote_t** wm, int wiimotes) {
 	return wiiuse_os_poll(wm, wiimotes);
 }
 
-int wiiuse_update(struct wiimote_t** wiimotes, int nwiimotes, wiiuse_update_cb callback) {
+int wiiuse_update(struct wiimote_t** wiimotes, int nwiimotes, wiiuse_update_cb callback, void* usr_ctx) {
 	int evnt = 0;
 	if (wiiuse_poll(wiimotes, nwiimotes)) {
 		static struct wiimote_callback_data_t s;
@@ -99,6 +99,7 @@ int wiiuse_update(struct wiimote_t** wiimotes, int nwiimotes, wiiuse_update_cb c
 					s.event = wiimotes[i]->event;
 					s.state = wiimotes[i]->state;
 					s.expansion = wiimotes[i]->exp;
+                    s.usr_ctx = usr_ctx;
 					callback(&s);
 					evnt++;
 					break;
@@ -631,6 +632,7 @@ void handshake_expansion(struct wiimote_t* wm, byte* data, uint16_t len) {
 	byte buf = 0x00;
 	byte* handshake_buf;
 	int gotIt = 0;
+    int bup_type = 0;
 	WIIUSE_DEBUG("handshake_expansion with state %d", wm->expansion_state);
 
 	switch (wm->expansion_state) {
@@ -699,6 +701,9 @@ void handshake_expansion(struct wiimote_t* wm, byte* data, uint16_t len) {
 				case EXP_ID_CODE_MOTION_PLUS:
 				case EXP_ID_CODE_MOTION_PLUS_CLASSIC:
 				case EXP_ID_CODE_MOTION_PLUS_NUNCHUK:
+                    bup_type = wm->exp.type;
+                    nunchuk_handshake(wm, &wm->exp.nunchuk, data + 32, 14);
+                    wm->exp.type = bup_type;
 					/* wiiuse_motion_plus_handshake(wm, data, len); */
 					wm->event = WIIUSE_MOTION_PLUS_ACTIVATED;
 					gotIt = 1;

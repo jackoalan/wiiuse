@@ -803,6 +803,7 @@ typedef struct wiimote_callback_data_t {
 	WCONST WIIUSE_EVENT_TYPE event;
 	WCONST int state;
 	WCONST struct expansion_t expansion;
+    void* usr_ctx;
 } wiimote_callback_data_t;
 
 /** @brief Callback type */
@@ -927,7 +928,7 @@ extern "C" {
 	 *
 	 *  @return Number of wiimotes that had an event.
 	 */
-	WIIUSE_EXPORT extern int wiiuse_update(struct wiimote_t** wm, int wiimotes, wiiuse_update_cb callback);
+	WIIUSE_EXPORT extern int wiiuse_update(struct wiimote_t** wm, int wiimotes, wiiuse_update_cb callback, void* usr_ctx);
 
 	/* ir.c */
 	WIIUSE_EXPORT extern void wiiuse_set_ir(struct wiimote_t* wm, int status);

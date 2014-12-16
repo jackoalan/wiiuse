@@ -83,7 +83,8 @@
 #pragma mark connect, disconnect
 
 - (BOOL) connectChannel: (IOBluetoothL2CAPChannel**) pChannel PSM: (BluetoothL2CAPPSM) psm {
-	if ([device openL2CAPChannelSync:pChannel withPSM:psm delegate:self] != kIOReturnSuccess) {
+    IOReturn ret = [device openL2CAPChannelSync:pChannel withPSM:psm delegate:self];
+	if (ret != kIOReturnSuccess) {
 		WIIUSE_ERROR("Unable to open L2CAP channel [id %i].", wm->unid);
 		*pChannel = nil;
 		return NO;
@@ -321,6 +322,7 @@
 	
 	// log the received data
 #ifdef WITH_WIIUSE_DEBUG
+#if 0
 	{
 		printf("[DEBUG] (id %i) RECV: (%.2x) ", wm->unid, bytes[0]);
 		int x;
@@ -328,6 +330,7 @@
 			printf("%.2x ", bytes[x]);
 		printf("\n");
 	}
+#endif
 #endif
 	
 	// copy to struct
