@@ -41,7 +41,7 @@ else()
 	add_definitions(-DWIIUSE_STATIC)
 endif()
 
-if(NOT WIN32 AND NOT APPLE)
+if(NOT WIN32 AND NOT APPLE AND NOT RWK_IOS)
 	set(LINUX YES)
 	find_package(Bluez REQUIRED)
 	include_directories(${BLUEZ_INCLUDE_DIRS})
